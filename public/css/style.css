@@ -1,0 +1,1375 @@
+@charset "UTF-8";
+/*共通部分
+--------------------------------------------------*/
+:root {
+    --base-bg-color: rgba(189, 218, 221, 0.944);  
+    --main-bg-color: #fffdf7;
+    --main-bg-color2:  rgba(58, 75, 92, 0.848);
+    --accent-bg-color:rgba(232, 194, 119, 0.881);
+    --text-font-family: "Playfair Display", serif;
+    --font-color-main:#0bd;
+}
+html {
+    font-size: 100%;
+}
+body {
+    font-family: var(--text-font-family);
+    line-height: 1.7;
+    color: #333;
+    font-size: 14px;
+}
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/*会員登録
+------------------------------*/
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+}
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}
+
+button .submit .login-btn {
+    color: #0bd;
+}
+
+/*.doneクラスがついたヘッダー*/
+#header.dnone {
+	opacity: 0;/*透過0にして非表示に*/
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+#header.dnone.panelactive {
+	opacity: 1;/*不透明にして出現*/
+}
+
+/*========= ナビゲーションのためのCSS ===============*/
+
+/*ナビゲーションの縦スクロール*/
+#g-nav-list{
+    display: none;/*はじめは表示なし*/
+    /*ナビの数が増えた場合縦スクロール*/
+    position: fixed;
+    z-index: 999; 
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#header.panelactive #g-nav-list{
+    display: block; /*クラスが付与されたら出現*/
+}
+
+/*ナビゲーション*/
+#g-nav ul {
+	opacity: 0;/*はじめは透過0*/
+    /*ナビゲーション天地中央揃え※レイアウトによって調整してください。不必要なら削除*/
+    position: absolute;
+    z-index: 999;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+/*背景が出現後にナビゲーションを表示*/
+#header.panelactive ul {
+    opacity:1;
+}
+
+/* 背景が出現後にナビゲーション li を表示※レイアウトによって調整してください。不必要なら削除*/
+#header.panelactive ul li{
+animation-name:gnaviAnime;
+animation-duration:1s;
+animation-delay:.2s;/*0.2 秒遅らせて出現*/
+animation-fill-mode:forwards;
+opacity:0;
+}
+@keyframes gnaviAnime{
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
+}
+
+/*========= ボタンのためのCSS ===============*/
+/*ボタン全体の形状*/
+.openbtn{
+    /*はじめは非表示に*/
+	display: none;
+    /*ボタンの位置*/
+	position:fixed;
+	top:10px;
+	right: 10px;
+	z-index: 999;
+    /*ボタンの形状*/
+	background:var(--accent-bg-color);
+	cursor: pointer;
+    width: 50px;
+    height:50px;
+	border-radius: 5px;
+}
+	
+/*×に変化*/	
+.openbtn span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+	background-color: #fff;
+    width: 45%;
+}
+
+.openbtn span:nth-of-type(1) {
+	top:15px;	
+}
+
+.openbtn span:nth-of-type(2) {
+	top:23px;
+}
+
+.openbtn span:nth-of-type(3) {
+	top:31px;
+}
+
+.openbtn.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn.active span:nth-of-type(2) {
+	opacity: 0;
+}
+
+.openbtn.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+/*fadeDownクラスが付与された後のボタンの出現アニメーション設定*/
+.fadeDown {
+    animation-name: fadeDownAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    display: block;
+}
+@keyframes fadeDownAnime{
+    from {
+    opacity: 0;
+	transform: translateY(-100px);
+    }
+
+    to {
+    opacity: 1;
+	transform: translateY(0);
+    }
+}
+
+/*========= ヘッダーナビゲーションのためのCSS ===============*/
+.bg-color {
+    background: var(--accent-bg-color);
+    padding: 10px 0;
+}
+
+.logo {
+    font-family: var(--main-font-family);
+    margin: auto;
+    align-items: center;
+    margin-bottom: 5px;
+    color: var(--main-bg-color);
+}
+.logo span {
+    color: var(--main-bg-color2);
+}
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0.5%;
+}
+/*==ヘッダーの形状*/
+#header{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+    align-items: center;
+    list-style: none;
+    font-size: 1.25rem;
+}
+
+/*.doneクラスがついたヘッダー*/
+#header.dnone {
+	opacity: 0;/*透過0にして非表示に*/
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+#header.dnone.panelactive {
+	opacity: 1;/*不透明にして出現*/
+}
+
+/*==ヘッダーのテキストナビゲーションの形状*/
+#g-navi ul{
+	list-style: none;
+	display: flex;
+	justify-content: center;
+}
+/*2階層目以降は横並びにしない*/
+#g-navi ul ul{
+	display: block;
+}
+#g-navi ul ul li {
+    display: block;
+} 
+
+/*下の階層のulや矢印の基点にするためliにrelativeを指定*/
+nav ul li{
+	position: relative;
+}
+
+/*==矢印の設定*/
+
+/*2階層目を持つliの矢印の設定*/
+nav ul li.has-child::before{
+	content:'';
+	position: absolute;
+	right:5px;
+    margin-left: 10px;
+	top:20px;
+	width:6px;
+	height:6px;
+	border-top: 2px solid var(--main-bg-color2);
+    border-right:2px solid var(--main-bg-color2);
+    transform: rotate(135deg);
+}
+
+/*3階層目を持つliの矢印の設定
+nav ul ul li.has-child::before{
+	content:'';
+	position: absolute;
+	left:6px;
+	top:17px;
+	width:6px;
+	height:6px;
+    border-top: 2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(45deg);
+}*/
+
+/*== 2・3階層目の共通設定 */
+
+/*下の階層を持っているulの指定*/
+nav li.has-child ul{
+    /*絶対配置で位置を指定*/
+	position: absolute;
+	left:0;
+	top:62px;
+	z-index: 4;
+    /*形状を指定*/
+	background:var(--base-bg-color);
+    box-shadow: 2px 2px 1px rgba(255, 255, 255, .5);
+    border-radius: 5px;
+	width:190px;
+    /*はじめは非表示*/
+	visibility: hidden;
+	opacity: 0;
+    /*アニメーション設定*/
+	transition: all .3s;
+}
+
+/*hoverしたら表示*/
+nav li.has-child:hover > ul,
+nav li.has-child ul li:hover > ul,
+nav li.has-child:active > ul,
+nav li.has-child ul li:active > ul{
+    visibility: visible;
+    opacity: 1;
+}
+
+/*==768px以下の形状*/
+
+@media screen and (max-width:768px){
+	nav{
+		padding: 0;
+	}
+	
+	nav ul{
+		display: block;
+	}
+	
+	nav li.has-child ul,
+	nav li.has-child ul ul{
+    position: relative;
+	left:0;
+	top:0;
+	width:100%;
+	visibility:visible;/*JSで制御するため一旦表示*/
+	opacity:1;/*JSで制御するため一旦表示*/
+	display: none;/*JSのslidetoggleで表示させるため非表示に*/
+	transition:none;/*JSで制御するためCSSのアニメーションを切る*/
+}
+	
+nav ul li a{
+	border-bottom:1px solid #ccc;
+}
+
+/*矢印の位置と向き*/
+
+nav ul li.has-child::before{
+	left:20px;	
+}
+
+nav ul ul li.has-child::before{
+    transform: rotate(135deg);
+	left:20px;
+}
+    
+nav ul li.has-child.active::before{
+    transform: rotate(-45deg);
+}
+
+}
+
+#g-navi ul li a{
+	display: block;
+	text-decoration: none;
+    font-family: var(--main-font-family);
+    font-weight: 600;
+	color: var(--main-bg-color);
+	padding:0 20px;
+    margin: 9px auto;
+    /*border-right:1px var(--main-bg-color) solid;*/
+}
+
+#g-navi ul li.current a,
+#g-navi ul li a:hover{
+	color:var(--main-bg-color2);	
+}
+
+/*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+#header.dnone #g-navi{
+    /*固定位置にして最背面に*/
+    position:fixed;
+	top: 0;
+    left: 0;
+	z-index: -1;
+    /*高さと幅*/  
+	width:100%;
+	height: 100vh;
+    /*天地中央＆テキスト中央揃え*/  
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+    /*はじめは透過0に*/  
+    opacity: 0;
+	transition: all 0.4s;
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+#header.dnone.panelactive #g-navi{
+	opacity: 1;/*不透明に*/
+	z-index: 3;/*最前面に*/
+	background:var(--base-bg-color);
+}
+
+#header.dnone.panelactive #g-navi ul{
+	opacity: 1;
+}
+/*リストの形状*/
+
+#header.dnone.panelactive #g-navi li a{
+	color: #fff;
+	text-decoration: none;
+	padding:10px;
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: bold;
+	transition:all 0.3s;
+}
+
+/*メインコンテンツを前面に*/
+section{
+position: relative;
+z-index: 1;
+}
+
+.login-area {
+    padding: 10px;
+}
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
+    width:94%;
+    margin:0 auto;
+    padding: 10px 0;
+}
+
+.slider-bg {
+    background-color: var(--accent-bg-color);
+    width: 100%;
+    padding-bottom: 10px;
+    height: auto;
+}
+
+.slider img {
+    /*z-index: 1;
+    background-size: cover;
+    background-position: center top;
+    position: relative;*/
+    width:100%;/*スライダー内の画像を横幅100%に*/
+    height: auto;
+    border-radius: 5px;
+}
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+
+.slider .slick-slide {
+    margin:0 10px;
+}
+.slider-btn {
+    background: var(--accent-bg-color);
+    padding: 7px 16px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.slider-btn:hover {
+    background: rgba(162, 142, 49, 0.881);
+}
+/*　透過　*/
+
+.opacity img{
+	opacity:1;
+	transition: .3s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+    height: 300px;
+}
+
+.opacity a:hover img{/*hoverした時の変化*/
+	opacity:0.5;/*透過具合を変更したい場合はこの数値を変更*/
+}
+.opacity span.cap{
+	opacity:0;
+	transition: .5s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+	position: absolute;
+	z-index:3;/*テキストを前面に出す*/
+	top: 50%;
+    left: 50%;
+	transform: translate(-50%,-50%);
+	color: #000000;/*テキストの色を変えたい場合はここを修正*/
+    line-height: 1.5;/*行の高さを1.5にする*/
+}
+
+.opacity:hover span.cap{/*hoverした時の変化*/
+	opacity:1;
+}
+
+.slider span {/*テキストの基点となる位置を定義*/
+    position: relative;
+}
+
+.slider li span .cap {
+    opacity:0;
+    position: absolute;
+    z-index:3;/*テキストを前面に出す*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 1.125rem;
+    color: #333;/*テキストの色を変えたい場合はここを修正*/
+    line-height: 1.5;/*行の高さを1.5にする*/
+}
+
+/*矢印の設定*/
+
+/*戻る、次へ矢印の位置*/
+.slick-prev, 
+.slick-next {
+    position: absolute;/*絶対配置にする*/
+    top: 42%;
+    cursor: pointer;/*マウスカーソルを指マークに*/
+    outline: none;/*クリックをしたら出てくる枠線を消す*/
+    border-top: 2px solid var(--accent-bg-color);/*矢印の色*/
+    border-right: 2px solid var(--accent-bg-color);/*矢印の色*/
+    height: 15px;
+    width: 15px;
+}
+
+.slick-prev {/*戻る矢印の位置と形状*/
+    left: -1.5%;
+    transform: rotate(-135deg);
+}
+
+.slick-next {/*次へ矢印の位置と形状*/
+    right: -1.5%;
+    transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+
+.slick-dots {
+    text-align:center;
+    margin:20px 0 0 0;
+}
+
+.slick-dots li {
+    display:inline-block;
+    margin:0 5px;
+}
+
+.slick-dots button {
+    color: transparent;
+    outline: none;
+    width:8px;/*ドットボタンのサイズ*/
+    height:8px;/*ドットボタンのサイズ*/
+    display:block;
+    border-radius:50%;
+    background:var(--main-bg-color2);/*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button{
+    background:var(--accent-bg-color);/*ドットボタンの現在地表示の色*/
+}
+
+/*== ボタン共通設定 */
+.btn{
+    /*アニメーションの起点とするためrelativeを指定*/
+    position: relative;
+	overflow: hidden;
+    /*ボタンの形状*/
+	text-decoration: none;
+	display: inline-block;
+   	border: 1px solid #555;/* ボーダーの色と太さ */
+    padding: 10px 30px;
+    text-align: center;
+    outline: none;
+    /*アニメーションの指定*/   
+    transition: ease .2s;
+}
+
+/*ボタン内spanの形状*/
+.btn span {
+	position: relative;
+	z-index: 3;/*z-indexの数値をあげて文字を背景よりも手前に表示*/
+	color:#333;
+}
+
+.btn:hover span{
+	color:#fff;
+}
+
+/*== 背景が流れる（左から右） */
+.bgleft:before {
+    content: '';
+    /*絶対配置で位置を指定*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    /*色や形状*/
+    background:var(--base-bg-color);/*背景色*/
+    width: 100%;
+	height: 100%;
+    /*アニメーション*/
+    transition: transform .6s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+    transform: scale(0, 1);
+	transform-origin: right top;
+}
+
+/*hoverした際の形状*/
+.bgleft:hover:before{
+	transform-origin:left top;
+	transform:scale(1, 1);
+}
+
+/*お知らせ
+------------------------------------------------*/
+
+.news {
+    background-image: url(../images/img_07.jpg);
+    background-blend-mode:soft-light;
+    background-color: var(--base-bg-color);
+    background-size: cover;
+}
+.news-area {
+    padding: 25px 0;
+}
+
+.home-title span {
+    position: absolute;
+    border-top: 1px solid var(--base-bg-color);
+    margin-top: 85px;
+    font-size: 1.25rem;
+    text-shadow: none;
+}
+
+.news h2 {
+    font-family: var(--main-font-family);
+    color: var(--main-bg-color);
+    font-size: 2.125rem;
+    text-shadow: 4px 4px 1px var(--main-bg-color2);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center; /*#1b71da*/
+}
+
+.text-area {
+    position: relative;
+    background: var(--main-bg-color);
+}
+
+.diagonal-bg {
+    position: absolute;
+    background: gold; /* 斜めの線形グラデーション */
+    inset: 20px 40px 30px 10px;
+    transform: rotate(45deg);
+}
+
+.bx-wrapper {
+    border: 1px var(--accent-bg-color) solid;
+    margin-top: 70px;
+}
+
+.news-text {
+    border-radius: 10px;
+    box-shadow: rgba(210, 212, 218, 0.5);
+}
+.bx-wrapper {
+    border-radius: 5px;
+}
+/*ニュース1行の周りの余白*/
+.slider-2 a{
+    display: block;
+    padding:20px;
+    width: 80%;
+    font-size: 1.125rem;
+}
+
+/*日付*/
+.slider-2 span {
+    display:inline-block;
+    font-size: 1.125rem;
+    margin-right:10px;
+    color:#777;
+}
+
+/*768px以下の見た目 ※1行のままにしたい場合は不要　*/
+@media screen and (max-width:768px) {
+    .slider-2 {
+        padding:20px;
+        background:#fff;
+    }
+
+    .slider-2 li {
+        border-bottom:1px dashed #b3f2ff;
+    }
+
+    .slider-2 li:last-child {
+        border-bottom:none;
+    }
+    .slider-2 span {
+        display:block;
+		padding-bottom:10px;
+    }
+}
+
+/*画像の透過+グラデーション＋テキスト出現*/
+.grid {
+    display: grid;
+    gap: 26px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 50px;
+}
+.opacityText{/*テキストの基点となる位置を定義*/
+	position: relative;
+}
+
+.opacityText span.mask{
+	position: relative;/*グラデーションの基点となる位置を定義*/
+	transition: .3s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+	display: block;/*画像をくくるspanタグをブロック要素にする*/
+    line-height: 0;/*行の高さを0にする*/
+}
+
+.opacityText:hover span.mask::before{/*hoverした時の変化*/
+	content:"";
+	position: absolute;
+	z-index:2;
+	top:0;
+	left:0;
+	width: 100%;
+    height: 100%;
+    border-radius: 10px;
+	background: linear-gradient(45deg,rgba(88,182,211,.6),rgba(93, 143, 229, 0.6));/*背景色（グラデーション）*/
+}
+
+.opacityText img{
+	opacity:1;
+    border-radius: 10px;
+    width: 400px;
+    height: 270px;
+	transition: .3s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+}
+
+.opacityText:hover img{/*hoverした時の変化*/
+	opacity:0.6;/*透過具合を変更したい場合はこの数値を変更*/
+}
+
+.opacityText span.cap{
+	opacity:0;
+	transition: .5s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+	position: absolute;
+	z-index:3;/*テキストを前面に出す*/
+	top: 50%;
+    left: 50%;
+	transform: translate(-50%,-50%);
+    font-size: 1.125rem;
+	color: #262626;/*テキストの色を変えたい場合はここを修正*/
+    line-height: 1.5;/*行の高さを1.5にする*/
+}
+
+.opacityText:hover span.cap{/*hoverした時の変化*/
+	opacity:1;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/*.login-area {
+    padding: 5px 4%;
+}*/
+/*== 会員登録ボタン
+グラデーション線から塗に変化する */
+.gradient4{
+    /*ボタンの形状*/
+    display: inline-block;
+    padding: 6px 30px; 
+    margin: 10px auto;
+    border-radius:5px;
+    text-decoration: none;
+    border:1px solid #303030;
+    color: #fff;
+    outline: none;
+    /*アニメーションの指定*/ 
+    transition: all 0.4s ease-out;
+    background: linear-gradient(260deg, var(--main-bg-color2) 0%, #dac0a3f7 50%, var(--main-bg-color2) 100%);
+}
+
+/*hoverした際、グラデーションと影を付ける*/
+.gradient4:hover{
+    /*ボタンの形状*/
+    border-color:transparent;
+    color: #ffffff;
+    /*背景の色と形状*/
+    background: linear-gradient(270deg, #3f4e64d3 0%,var(--accent-bg-color) 50%, #485477c1 100%);
+    background-size: 200% auto;
+    background-position: right center;
+    /*ボックスの影*/   
+    box-shadow: 0 5px 10px rgba(120, 108, 250, 0.4);
+}
+/*特集
+------------------------------------------------------*/
+.topic {
+    background: var(--base-bg-color);
+    padding: 20px;
+}
+
+.topic h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.125rem;
+    padding: 10px;
+}
+
+/*投稿フォーム------------------------------------*/
+textarea {
+    vertical-align: top;
+}
+.men {
+    margin-left: 0;
+}
+
+/*news------------------------------------*/
+.page-title {
+    font-size: 4.125rem;
+    color: var(--main-bg-color);
+    font-family: var(--main-font-family);
+    text-transform: uppercase;
+    text-shadow: 5px 5px 1px rgba(112, 55, 126, 0.873);
+    font-weight: bold;
+    margin: 0 auto 50px;
+    padding-top: 50px
+}
+.big-bg {
+    background-size: cover;
+    background-position: center top;
+}
+#news {
+    background-image: url(/images/img_06.jpg);
+    background-color: var(--base-bg-color);
+    background-blend-mode: soft-light;
+    height: 250px;
+    margin-bottom: 40px;
+}
+
+#news .page-title {
+    text-align: center;
+}
+
+/*記事部分*/
+article {
+    width: 74%;
+    order: 2;
+}
+
+/*サイドバー*/
+aside {
+    width: 22%;
+    order: 3;
+}
+/*バナー
+.ad {
+    order: 1;
+}*/
+
+.ad img {
+    background-size: 10%;
+}
+
+.news-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.post-info {
+    position: relative;
+    padding-top: 4px;
+    margin-bottom: 40px;
+}
+
+.post-date {
+    background: var(--accent-bg-color);
+    border-radius: 50%;
+    color: #fff;
+    width: 100px;
+    height: 100px;
+    font-size: 1.625rem;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    padding-top: 10px;
+}
+
+.post-date span {
+    font-size: 1rem;
+    border-top: 1px rgba(255, 255, 255, .5) solid;
+    padding-top: 6px;
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.post-title {
+    font-family: var(--main-font-family);
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.post-title,
+.post-cat {
+    margin-left: 120px;
+}
+
+article img {
+    margin-bottom: 20px;
+}
+
+article p {
+    margin-bottom: 1rem;
+} 
+
+.sub-title {
+    font-size: 1.375rem;
+    padding: 0 8px 8px;
+    border-bottom: 2px var(--base-bg-color) solid;
+    font-weight: normal;
+}
+
+aside p {
+    padding: 12px 10px;
+}
+
+.sub-menu {
+    margin-bottom: 60px;
+    list-style: none;
+}
+
+.sub-menu li {
+    border-bottom: 1px #ddd solid;
+}
+
+.sub-menu a {
+    color: #432;
+    padding: 10px;
+    display: block;
+}
+
+.sub-menu a:hover {
+    color: var(--base-bg-color);
+}
+
+/* contact 
+--------------------------------------------*/
+#contact {
+    background-image: url(/images/img_07.jpg);
+    background-color: var(--base-bg-color); 
+    background-blend-mode:soft-light;
+    background-size:cover;
+    min-height: 100vh;
+}
+
+/*フォーム
+----------------------------------------*/
+
+#create {
+    background-image: url(/images/img_07.jpg);
+    background-color: var(--base-bg-color);
+    background-blend-mode:soft-light;
+    background-size:cover;
+    min-height: 100vh;
+}
+form div {
+    margin-bottom: 14px;
+}
+
+label {
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
+    background: rgba(255, 255, 255, .5);
+    border: 1px #fff solid;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+input[type="checkbox"] {
+    border: 1px var(--accent-bg-color) solid;
+    border-radius: 2px;
+    margin-right: 2px;
+    margin-top: 9px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+    width: 100%;
+    max-width: 300px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 480px;
+    height: 6rem;
+}
+input[type="submit"],
+.submit {
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    background-color: var(--accent-bg-color);
+    padding: 14px;
+    color: var(--main-bg-color2);
+    border-radius: 5px;
+}
+
+.genre {
+    display: flex;
+}
+
+.genre label {
+    margin-bottom: 0;
+    margin-right: 20px;
+}
+
+.input-name {
+    background-color:var(--base-bg-color);
+    border-radius: 5px;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 2px 15px;
+    font-size: 1rem;
+    margin: auto;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.btn {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #9f9f9f;
+    padding: 10px 30px;
+    text-align: center;
+    margin: 5px auto;
+    outline: none;
+    transition: ease .2s;
+}
+
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff; 
+}
+
+/*カレンダー
+--------------------------------------------------------------------*/
+
+#add-date {
+    background-image: url(../images/img_07.jpg);
+    background-size: cover;
+    background-color: var(--base-bg-color);
+    background-blend-mode:color-burn ;
+    padding-bottom: 100px;
+    padding: 20px auto;
+}
+.date {
+    font-size: 1.7rem;
+    color: #fff;
+}
+
+.fc-col-header-cell {
+    color: var(--main-bg-color);
+    background-color: var(--base-bg-color);
+    background-blend-mode: color-burn;
+}
+
+.fc .fc-daygrid-day-number {
+    font-weight: 900;
+}
+
+.fc .fc-col-header-cell-cushion {
+    font-size: 1.125rem;
+    margin: 10px;
+}
+.sunday-header {
+    color: #ff3d3d;
+}
+.saturday-header {
+    color: #48cbff;
+}
+
+/* 日曜日の日付の背景色を赤にする */
+.sunday-cell {
+    background-color: #f06d5636;
+    color: #ff3d3d;
+}
+
+/* 土曜日の日付の背景色を青にする */
+.saturday-cell {
+    background-color: #1c77908c;
+    color: #48cbff;
+}
+
+.home-title {
+    display: flex;
+    position: relative;
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 17px;
+    margin-left: 1px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 5px 5px 1px var(--accent-bg-color);
+}
+
+.bg-title {
+    text-transform: uppercase;
+    position: absolute;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--base-bg-color);
+}
+
+.sab-title {
+    font-size: 2rem;
+}
+
+/*========= 検索窓の設定 ===============*/
+
+/*==検索窓背景のエリア*/
+#search form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search input[type="text"] {
+    width: 100%;
+    height:46px;
+    letter-spacing: 0.05em;
+    max-width: 900px;
+    border:1px solid var(--accent-bg-color);
+    border-radius: 30px;
+    box-shadow: 2px 2px 5px #ccc;
+    background:url("/images/search.svg") no-repeat right;/*虫眼鏡アイコンを背景に表示*/
+    background-size: auto;
+    background: var(--main-bg-color);
+	padding: 10px;
+}
+.fa-search {
+    color: var(--main-bg-color);
+}
+#search-wrap{
+	top:150px;
+    right:20px;
+	border-radius: 5px;
+}
+.searchButton {
+    background-color: var(--accent-bg-color);
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-left: 5px;
+}
+.search_genre {
+    background: var(--main-bg-color2);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.ripples_radio {
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.ripples_radio input[type="radio"] {
+    color: var(--accent-bg-color);
+}
+.ripples_radio label {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+/*==検索フォームの設定*/
+
+/*==テキスト入力とボタンinput共通設定*/
+#search-wrap input{
+	/*-webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+	outline: none;
+	cursor: pointer;/*カーソルを指マークに*/
+	color: #666;
+}
+
+/*テキスト入力inputにフォーカスされたら*/
+#search-wrap input[type="text"]:focus {
+	background:#eee;/*背景色を付ける*/
+}
+
+/*gallery
+-----------------------------------------------------------------*/
+#gallery {
+    background-image: url(/images/img_07.jpg);
+    background-repeat: repeat;
+    background-color:var(--base-bg-color);
+    background-blend-mode: soft-light;
+    background-size:contain;
+}
+
+.gallery-content {
+    max-width: 560px;
+}
+
+.gallery-content .page-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.name-area {
+    display: flex;
+    align-items: center;
+}
+
+.artist-name {
+    align-items: center;
+    margin: 2px 5px;
+    font-size: 1.125rem;
+}
+.bg-gray-100 {
+    padding: 3px;
+    height: 30px;
+}
+.single-bg {
+    justify-content: center;
+} 
+
+.grid {
+    display: grid;
+    gap: 20px;
+    margin-top: 6%;
+    margin-bottom: 50px;
+}
+
+.icon img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}
+
+.show-btn {
+    color: var(--accent-bg-color);
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 8px 15px;
+
+}
+
+/*detail
+------------------------------------------------------------*/
+#detail {
+    background-image: url(/images/img_05.jpg);
+    background-color: var(--base-bg-color);
+    background-blend-mode: soft-light;
+    background-size: cover;
+}
+.name-area {
+    display: flex;
+}
+
+.artist-name {
+    font-size: 1.125rem;
+}
+
+/*お気に入り登録
+----------------------------------------------------------------*/
+#favorite svg {
+    margin: 5px;
+    color:var(--main-bg-color2);
+}
+
+#favorite {
+    display: flex;
+    justify-content: end;
+}
+
+.tags {
+    color: #0bd;
+}
+/*footer
+--------------------------------*/
+footer {
+    background: var(--base-bg-color);
+    text-align: center;
+    padding: 26px 0;
+}
+footer p {
+    color: #fff;
+    font-size: 0.875rem;
+}
+.footer-nav li {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 0.875rem;
+}
+.footer-nav li a {
+    color: #fff;
+    border-bottom: solid 1px #eee;
+    padding: 12px;
+}
+
+.search_genre {
+    display: flex;
+}
+
