@@ -12,7 +12,7 @@
             <p class="post-date">3/30 <span>2023</span></p>
             <p class="post-cat">カテゴリー：お店の紹介</p>
         </header>
-        <img src="{{ asset('/images/img_07.jpg') }}" alt="店内の様子">
+        <img src="{{ asset('images/img_07.jpg') }}" alt="店内の様子">
         <p>
             この夏人気イラストレーター〇〇さんの初個展が〇月〇日に開催が決定しました。
             下積み時代の作品から未公開のイラストなど〇〇さんの描く世界観を満喫してみてはいかがでしょうか。
