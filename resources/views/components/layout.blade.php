@@ -41,7 +41,7 @@
             <a href="/artist"><h1 class="logo text-4xl">Artist<span>Info</span></h1></a>
             <nav id="g-navi">
             <ul>
-            <li><a href="/artist">Home</a></li>
+            <li><a href="{{ route('artist.index') }}">Home</a></li>
             <li><a href="{{ route('artist.news') }}">News</a></li>
             <li class="has-child"><a>Gallery</a>
                 <ul class="acm-ul">
