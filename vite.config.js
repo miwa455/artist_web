@@ -8,9 +8,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
-                'resources/js/app.js',
-                'resources/css/style.css',
+                'public/build/assets/app-Vp7UFyhC.css',
+                'public/build/assets/app-JzZ5dANH.js',
+                'public/build/manifest.json',
             ],
             refresh: true,
         }),
