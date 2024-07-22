@@ -15,7 +15,6 @@
                 <input type="text" value="{{ isset($keyword) ? $keyword : '' }}" name="keyword" id="search-text" 
                 placeholder="検索キーワードを入力">
                 <input type="submit" class="button" value="検索">
-                        <i class="fa fa-search fa-xs"></i>
                 <input type="reset" value="リセット"> 
         </div>
 
