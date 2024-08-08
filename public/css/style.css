@@ -2,12 +2,11 @@
 /*共通部分
 --------------------------------------------------*/
 :root {
-    --base-bg-color: rgba(148, 168, 181, 0.944);  
-    --main-bg-color: #fffdf7;
-    --main-bg-color2:  rgba(71, 91, 111, 0.848);
-    --accent-bg-color: rgba(236, 213, 169, 0.881);
+    --base-bg-color: rgba(239, 225, 181, 0.944);  
+    --main-bg-color: rgba(191, 151, 57);
+    --main-bg-color2:  rgba(79, 89, 61, 0.848);
+    --accent-bg-color: rgba(172, 207, 205, 0.881);
     --text-font-family: "Playfair Display", serif;
-    --font-color-main:#0bd;
 }
 html {
     font-size: 100%;
@@ -375,9 +374,9 @@ nav ul li.has-child.active::before{
 #g-navi ul li a{
 	display: block;
 	text-decoration: none;
-    font-family: var(--main-font-family);
+    font-family: var(--main-bg-color);
     font-weight: 600;
-	color: var(--main-bg-color);
+	color: var(--main-font-family);
 	padding:0 20px;
     margin: 9px auto;
     /*border-right:1px var(--main-bg-color) solid;*/
@@ -446,13 +445,13 @@ z-index: 1;
 .slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
     width:94%;
     margin:0 auto;
-    padding: 10px 0;
+    padding: 30px 0;
 }
 
 .slider-bg {
     background-color: var(--accent-bg-color);
     width: 100%;
-    padding-bottom: 10px;
+    padding: 50px auto;
     height: auto;
 }
 
@@ -640,7 +639,7 @@ z-index: 1;
 
 .home-title span {
     position: absolute;
-    border-top: 1px solid var(--base-bg-color);
+    border-top: 1px solid var(--main-bg-color);
     margin-top: 85px;
     font-size: 1.25rem;
     text-shadow: none;
@@ -648,9 +647,9 @@ z-index: 1;
 
 .news h2 {
     font-family: var(--main-font-family);
-    color: var(--main-bg-color);
+    color: var(--main-bg-color2);
     font-size: 2.125rem;
-    text-shadow: 4px 4px 1px var(--main-bg-color2);
+    text-shadow: 3px 3px 1px var(--main-bg-color);
     margin: auto;
     display: flex;
     align-items: center;
@@ -659,7 +658,7 @@ z-index: 1;
 
 .text-area {
     position: relative;
-    background: var(--main-bg-color);
+    background: #fff;
 }
 
 .diagonal-bg {
@@ -823,6 +822,7 @@ z-index: 1;
 }
 
 .topic h2 {
+    color: var(--main-bg-color2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -844,7 +844,7 @@ textarea {
     color: var(--main-bg-color);
     font-family: var(--main-font-family);
     text-transform: uppercase;
-    text-shadow: 5px 5px 1px rgba(112, 55, 126, 0.873);
+    text-shadow: 4px 4px 1px rgba(132, 91, 142, 0.841);
     font-weight: bold;
     margin: 0 auto 50px;
     padding-top: 50px
